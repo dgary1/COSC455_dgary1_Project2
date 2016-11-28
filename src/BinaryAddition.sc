@@ -44,7 +44,7 @@ def doBinaryAddition(pBits: List[Boolean], qBits: List[Boolean], carryBit: Boole
 def convertIntListToBooleanList(intList: List[Int]) = List[Boolean] {
   intList.map(e => e match {
     case 0 => false
-    case _ => true
+    case 1 => true
   }).reverse
 }
 
