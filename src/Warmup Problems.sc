@@ -72,7 +72,7 @@ def twinprimeslist(n: Int) : List[Int] = {
 }
 def twinList(n: Int) : List[Int] = {
   if(twinprimes(n, n - 2))
-    n :: n + 2 :: twinList(n - 2)
+    n :: n - 2 :: twinList(n - 2)
   else
     twinList(n - 1)
 }
