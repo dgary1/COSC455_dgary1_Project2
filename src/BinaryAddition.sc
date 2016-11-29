@@ -24,12 +24,12 @@ def finishBinaryAdd(remainingBits: List[Boolean], carryBit: Boolean): List[Boole
 
 // This function determines what the next carry bit should be based on current bits.
 def getNextCarryBit(pBit: Boolean, qBit: Boolean, carrybit: Boolean): Boolean = {
-  ((pBit && qBit) && carrybit) || (pBit && qBit)
+  ((pBit ^ qBit) && carrybit) || (pBit && qBit)
 }
 
 // This function does the binary addition of two Booleans and a carry bit.
 def addBits(pBit: Boolean, qBit: Boolean, carryBit: Boolean): Boolean = {
-  ((pBit && qBit) && carryBit)
+  ((pBit ^ qBit) ^ carryBit)
 }
 
 // This function does the binary addition of two boolean lists. Note that the lists may not be equal in length.
@@ -41,13 +41,15 @@ def doBinaryAddition(pBits: List[Boolean], qBits: List[Boolean], carryBit: Boole
 }
 
 // This function converts a binary integer list into its corresponding boolean list.
-def convertIntListToBooleanList(intList: List[Int]) = List[Boolean] {
-  intList.map(e => e match {
+def convertIntListToBooleanList(intList: List[Int]): List[Boolean] = {
+  intList.reverse.map(e => convert(e))
+}
+def convert(n: Int): Boolean = {
+  n match {
     case 0 => false
     case 1 => true
-  }).reverse
+  }
 }
-
 // This function converts a boolean list into its corresponding binary integer list.
 def convertBooleanListToIntList(booleanList: List[Boolean]): List[Int] = {
   booleanList.map(e => e match {

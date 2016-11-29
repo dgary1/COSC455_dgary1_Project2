@@ -28,6 +28,8 @@ def go(someList: List[String]) = {
   printNumberMultiple(filteredList)
   print(" = ")
   print(product(filteredList))
+  println()
+  println()
 }
 def convertListFromLang(someList: List[String]): List[Int] = {
   someList.map(a => langToNumber(a))
@@ -44,7 +46,7 @@ def langToNumber(t: String): Int = {
     case "qi" => 7
     case "ba" => 8
     case "jiu" => 9
-    case "shit" => 10
+    case "shi" => 10
     case "zero" => 0
     case "one" => 1
     case "two" => 2
@@ -107,3 +109,4 @@ def product(someList: List[Int]) : Int = {
   }
 }
 go(List("yi", "josh", "three", "si"))
+go(List("yi", "david", "shi", "fourteen"))

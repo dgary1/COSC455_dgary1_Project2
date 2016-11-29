@@ -23,14 +23,15 @@ def prime(n: Int): Boolean = {
     case false => false
   }
 }
-// helper method
+// helper method checks the amount of factors there are. Returns true if there are only two (a.k.a only the
+// number and one are factors)
 def isPrime(n: Int, counterPara: Int, factorPara: Int) : Boolean = {
   factor(n, counterPara, factorPara) match {
     case 2 => true
     case _ => false
   }
 }
-// helper method to the helper method
+// helper method to the helper method, method finds how many factors there are
 def factor(n: Int, m: Int, f: Int) : AnyVal = {
   var fact : Int = f
   var counter : Int = m
@@ -56,6 +57,7 @@ prime(121)
 // Warmup Problems #2
 // Twin Primes
 def twinprimes(p1: Int, p2: Int): Boolean = {
+  // checks to make sure it satisfies all conditions
   if (prime(p1) == true && prime(p1) == true && (p2 - p1) == 2)
     true
   else
@@ -71,12 +73,18 @@ def twinprimeslist(n: Int) : List[Int] = {
   twin(twinList(n).reverse)
 }
 def twinList(n: Int) : List[Int] = {
-  if(twinprimes(n, n - 2))
-    n :: n - 2 :: twinList(n - 2)
-  else
-    twinList(n - 1)
+  // works backwards and goes towards zero.
+  if (n == 3)
+    Nil
+  else {
+    if (twinprimes(n, n - 2))
+      n :: n - 2 :: twinList(n - 2)
+    else
+      twinList(n - 1)
+  }
 }
 def twin(someList: List[Int]) : List[Int] = {
+  // checks size and solves accordingly
   someList match {
     case Nil => Nil
     case n :: List() => List(n)
@@ -90,10 +98,12 @@ def twin(someList: List[Int]) : List[Int] = {
 // Goldbach's Conjecture
 
 def goldbach(g: Int) : Unit = {
+  // input validation, checks to make sure the integer is greater than 2, even and is not odd
   g match {
     case (g) if (g <= 2) => println("Integer has to be greater than 2 to be considered.")
     case (g) if (g % 2 == 1) => println("Integer entered must be even")
     case (g) if (g % 2 == 0) => {
+      // if even, goes to helper method to find the two prime numbers
       val g1 = 1
       goldbachFinder(g, g1)
     }
@@ -103,6 +113,7 @@ def goldbachFinder(g: Int, g1: Int) : Unit = {
   val a : Int = g
   val b : Int = g1
   b match {
+    case (b) if(a == b) =>
     case 2 => goldbachFinder(a, b)
     case (b) if (prime(a - b)) => {
       println(b + " + " + (a - b) + " = " + a)
@@ -111,3 +122,4 @@ def goldbachFinder(g: Int, g1: Int) : Unit = {
   }
 }
 goldbach(28)
+
